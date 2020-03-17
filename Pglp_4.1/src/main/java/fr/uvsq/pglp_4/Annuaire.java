@@ -6,6 +6,7 @@
 package fr.uvsq.pglp_4;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -14,13 +15,23 @@ import java.util.List;
  */
 public class Annuaire implements PersonnelFonction{
     
-    private final List<PersonnelFonction> childFonction = new ArrayList<>();
+        private int IDgrp;
+        public List<PersonnelFonction> childFonction = new ArrayList<>();
 	
+        public ArrayList<PersonnelFonction> gettan(){
+            return (ArrayList<PersonnelFonction>)Collections.unmodifiableList(this.childFonction);
+        }
+        
+        public Annuaire(int IDgrp){
+            this.IDgrp = IDgrp;
+        }
+        
 	@Override
 	public void print() {
-		for (PersonnelFonction persoFct : childFonction) {
-			persoFct.print();
-		}
+            System.out.println(this.IDgrp);
+            for (PersonnelFonction persoFct : childFonction) {
+		persoFct.print();
+            }
 	}
 	
 	public void add(PersonnelFonction persoFct) {
@@ -30,5 +41,10 @@ public class Annuaire implements PersonnelFonction{
 	public void remove(PersonnelFonction persoFct) {
 		childFonction.remove(persoFct);
 	}
+        
+        public String toString(){
+            String str = " ID : " + this.IDgrp;
+            return str;
+        }
     
 }
