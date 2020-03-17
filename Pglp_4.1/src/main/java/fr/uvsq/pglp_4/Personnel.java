@@ -5,7 +5,8 @@
  */
 package fr.uvsq.pglp_4;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,8 +18,10 @@ public final class Personnel {
 	
 		private final String nom;
 		private final String prenom;
-		private LocalDateTime dateNaiss = LocalDateTime.now();
-		private final int numeroTel;
+                private final int iD;
+                
+		private LocalDate dateNaiss;
+		private final ArrayList<Integer> numeroTel;
 		
 		// Classe Builder 
 		
@@ -26,18 +29,29 @@ public final class Personnel {
 
 			private final String nom;
 			private final String prenom;
-			private final LocalDateTime dateNaiss;
-			private final int numeroTel;
+                        private final int iD;
+                        
+			private LocalDate dateNaiss;
+			private ArrayList<Integer>  numeroTel;
 			
 			
-			public Builder(String nom, String prenom, LocalDateTime dateNaiss, int numeroTel ) {
+			public Builder(String nom, String prenom, int iD ) {
 				this.nom = nom;
 				this.prenom = prenom;
-				this.dateNaiss = dateNaiss;
-				this.numeroTel = numeroTel;
+				this.iD = iD;
 				
 			}
+                        
+                        public Builder dateNaiss(int annee, int mois, int jour){
+                            this.dateNaiss = LocalDate.of(annee, mois, jour);
+                            return this; // erreur
+                        }
 			
+                        public Builder numeroTel(int numeroTel){
+                            this.numeroTel.add(numeroTel);
+                            return this;
+                        }
+                        
 			public Personnel build() {
 				return new Personnel(this);
 			}
@@ -49,6 +63,8 @@ public final class Personnel {
 		private Personnel(Builder builder) {
 			nom = builder.nom;
 			prenom = builder.prenom;
+                        iD = builder.iD;
+                        
 			dateNaiss = builder.dateNaiss;
 			numeroTel = builder.numeroTel;
 			
@@ -63,15 +79,28 @@ public final class Personnel {
 			return prenom;
 		}
 
-		public int getNumeroTel() {
+		public ArrayList<Integer> getNumeroTel() {
 			return numeroTel;
 		}
 
-		public LocalDateTime getDateNaiss() {
+		public LocalDate getDateNaiss() {
 			return dateNaiss;
 		}
 		
+                
+                
+                
+                @Override
+                public String toString(){
+                    String str = "ID : " + this.iD;
+                    return str;
+                }
 		
-		
+		public void print(){
+                    System.out.println("Information du presonnel ::  "  +this.iD
+                            + "  " + this.nom +  "  " + this.prenom);
+                    
+                }
+                
 }
 
