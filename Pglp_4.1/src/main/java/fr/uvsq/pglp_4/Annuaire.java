@@ -46,5 +46,9 @@ public class Annuaire implements PersonnelFonction{
             String str = " ID : " + this.IDgrp;
             return str;
         }
+
+    public void add(Personnel personne1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
