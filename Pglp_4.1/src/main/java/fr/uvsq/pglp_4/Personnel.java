@@ -22,7 +22,6 @@ public final class Personnel {
                 
 		private LocalDate dateNaiss;
 		private final ArrayList<Integer> numeroTel;
-		
 		// Classe Builder 
 		
 		public static class Builder{

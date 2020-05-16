@@ -12,6 +12,6 @@ package fr.uvsq.pglp_4;
 public interface Iterator {
     
     boolean HasNext();
-    PersonnelFonction Next();
+    public PersonnelFonction Next();
     
 }
